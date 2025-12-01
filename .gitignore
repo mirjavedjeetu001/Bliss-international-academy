@@ -1,0 +1,129 @@
+# Laravel specific
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+npm-debug.log
+yarn-error.log
+
+# Laravel IDE Helper
+/.phpstorm.meta.php
+/_ide_helper.php
+/_ide_helper_models.php
+.phpstorm.meta.php
+
+# Rocketeer PHP task runner and deployment package
+.rocketeer/
+
+# User-uploaded files (IMPORTANT - Don't upload user content)
+/public/frontend/assets/images/sliders/*
+!/public/frontend/assets/images/sliders/.gitkeep
+/public/backend/assets/images/events/*
+!/public/backend/assets/images/events/.gitkeep
+/public/backend/assets/images/video-gallery/*
+!/public/backend/assets/images/video-gallery/.gitkeep
+/public/backend/assets/images/photo-gallery/*
+!/public/backend/assets/images/photo-gallery/.gitkeep
+/public/backend/attachments/*
+!/public/backend/attachments/.gitkeep
+/public/frontend/assets/attachments/*
+!/public/frontend/assets/attachments/.gitkeep
+/public/frontend/assets/page-attachments/*
+!/public/frontend/assets/page-attachments/.gitkeep
+/storage/app/public/*
+!/storage/app/public/.gitkeep
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE and Editor files
+/.vscode
+/.idea
+*.swp
+*.swo
+*~
+.project
+.settings
+.buildpath
+*.sublime-project
+*.sublime-workspace
+
+# Composer
+composer.phar
+/vendor/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+/public/mix-manifest.json
+
+# Laravel Mix
+/public/js
+/public/css
+/public/mix-manifest.json
+
+# Testing
+/coverage
+/.phpunit.cache
+.phpunit.result.cache
+
+# Backup files
+*.sql
+*.sql.gz
+*.backup
+*_backup
+database.sqlite
+
+# Log files
+*.log
+/storage/logs/*
+!/storage/logs/.gitkeep
+
+# Cache
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+/storage/framework/cache/*
+!/storage/framework/cache/.gitkeep
+!/storage/framework/cache/data/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+
+# Temporary files
+*.tmp
+*.temp
+/temp
+/tmp
+
+# Package managers
+# Keep lock files for consistent dependency versions
+# package-lock.json
+# yarn.lock
+# composer.lock
+
+# Build files
+/dist
+/build
+
+# Documentation (optional - uncomment if you don't want to include)
+# /docs
+
+# Custom - Project specific
+# Add any project-specific files you don't want to commit
