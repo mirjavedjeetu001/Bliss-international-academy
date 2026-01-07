@@ -250,7 +250,7 @@ Bliss International Academy provides a balanced, inclusive learning environment 
     </div>
 
     <!-- Basic Info Section -->
-    <section class="basic-info-section py-5">
+    {{-- <section class="basic-info-section py-5">
         <div class="container">
             <div class="info-panel">
             <h4>Satkhira Campus</h4>
@@ -305,9 +305,9 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <section class="basic-info-section py-5">
+    {{-- <section class="basic-info-section py-5">
         <div class="container">
         
             <div class="info-panel">
@@ -363,7 +363,7 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <style>
     /* Video Viewer Styles */

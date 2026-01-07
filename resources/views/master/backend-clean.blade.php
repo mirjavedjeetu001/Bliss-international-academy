@@ -594,6 +594,40 @@
                     <span class="menu-text">Contact Messages</span>
                 </a>
             </div>
+
+            <div class="menu-section">
+                <div class="menu-title">User Management</div>
+                @can('manage users')
+                    <a href="{{ route('admin.users.index') }}" class="menu-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                        <i class="fas fa-users-cog menu-icon"></i>
+                        <span class="menu-text">Users</span>
+                    </a>
+                @endcan
+                @can('manage roles')
+                    <a href="{{ route('admin.roles.index') }}" class="menu-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                        <i class="fas fa-user-shield menu-icon"></i>
+                        <span class="menu-text">Roles</span>
+                    </a>
+                @endcan
+                @can('manage permissions')
+                    <a href="{{ route('admin.permissions.index') }}" class="menu-item {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
+                        <i class="fas fa-lock menu-icon"></i>
+                        <span class="menu-text">Permissions</span>
+                    </a>
+                @endcan
+                <a href="{{ route('admin.users.change-password.form') }}" class="menu-item {{ request()->routeIs('admin.users.change-password.form') ? 'active' : '' }}">
+                    <i class="fas fa-key menu-icon"></i>
+                    <span class="menu-text">Change Password</span>
+                </a>
+                <a href="{{ route('admin.menus.index') }}" class="menu-item {{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
+                    <i class="fas fa-bars menu-icon"></i>
+                    <span class="menu-text">Menu Management</span>
+                </a>
+                <a href="{{ route('admin.site-settings.index') }}" class="menu-item {{ request()->routeIs('admin.site-settings.*') ? 'active' : '' }}">
+                    <i class="fas fa-cogs menu-icon"></i>
+                    <span class="menu-text">Site Settings</span>
+                </a>
+            </div>
         </nav>
     </aside>
 

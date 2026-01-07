@@ -15,9 +15,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        // Import static menu items
+        $this->call(ImportStaticMenuSeeder::class);
+
+        // Site settings
+        $this->call(SiteSettingSeeder::class);
+
+        // Footer data
+        $this->call(FooterLinkSeeder::class);
+        $this->call(FooterBranchSeeder::class);
     }
 }

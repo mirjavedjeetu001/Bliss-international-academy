@@ -14,6 +14,11 @@ use App\Http\Controllers\Backend\VideoGalleryController;
 use App\Http\Controllers\Backend\ContactController as BackendContactController;
 use App\Http\Controllers\Backend\BookController;
 use App\Http\Controllers\Backend\TeacherController;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\MenuController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\Frontend\MediaGalleryController;
@@ -100,6 +105,37 @@ Route::prefix('backend')->name('backend.')->group(function () {
         Route::post('contact/{id}/mark-read', [BackendContactController::class, 'markAsRead'])->name('contact.mark-read');
         Route::post('contact/{id}/mark-unread', [BackendContactController::class, 'markAsUnread'])->name('contact.mark-unread');
     });
+});
+
+// User Management (Admin)
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::resource('roles', RoleController::class, [
+        'as' => 'admin'
+    ])->only(['index', 'store', 'destroy']);
+    Route::resource('permissions', PermissionController::class, [
+        'as' => 'admin'
+    ])->only(['index', 'store', 'destroy']);
+    Route::resource('menus', MenuController::class, [
+        'as' => 'admin'
+    ]);
+    Route::resource('site-settings', SiteSettingController::class, [
+        'as' => 'admin'
+    ])->only(['index', 'edit', 'update']);
+    Route::resource('footer-branches', FooterBranchController::class, [
+        'as' => 'admin'
+    ]);
+    Route::resource('footer-links', FooterLinkController::class, [
+        'as' => 'admin'
+    ]);
+    Route::post('permissions/assign', [PermissionController::class, 'assign'])->name('admin.permissions.assign');
+    Route::get('users/change-password', [UserController::class, 'changePasswordForm'])->name('admin.users.change-password.form');
+    Route::post('users/change-password', [UserController::class, 'changePasswordUpdate'])->name('admin.users.change-password.update');
 });
 
 // Dashboard route
