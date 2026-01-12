@@ -331,7 +331,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Photo gallery script loaded');
     
     // Photo view button functionality
     const photoViewBtns = document.querySelectorAll('.photo-view-btn');
@@ -340,8 +339,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const photoViewerTitle = document.getElementById('photoViewerTitle');
     const closePhotoViewer = document.getElementById('closePhotoViewer');
     
-    console.log('Found photo view buttons:', photoViewBtns.length);
-    console.log('Photo viewer element:', photoViewer);
     
     if (photoViewer && photoViewerImage && photoViewerTitle && closePhotoViewer) {
         photoViewBtns.forEach((btn, index) => {
@@ -352,7 +349,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const photoUrl = this.getAttribute('data-photo-url');
                 const photoTitle = this.getAttribute('data-photo-title');
                 
-                console.log('Photo button clicked:', index, photoUrl, photoTitle);
                 
                 if (photoUrl && photoTitle) {
                     photoViewerImage.src = photoUrl;
@@ -361,7 +357,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     photoViewer.style.display = 'block';
                     document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 } else {
-                    console.error('Missing photo data:', { photoUrl, photoTitle });
                 }
             });
         });
@@ -370,7 +365,6 @@ document.addEventListener('DOMContentLoaded', function() {
         closePhotoViewer.addEventListener('click', function() {
             photoViewer.style.display = 'none';
             document.body.style.overflow = 'auto'; // Restore scrolling
-            console.log('Photo viewer closed');
         });
 
         // Close on escape key
@@ -378,7 +372,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'Escape' && photoViewer.style.display === 'block') {
                 photoViewer.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                console.log('Photo viewer closed with escape key');
             }
         });
 
@@ -387,11 +380,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.target === photoViewer) {
                 photoViewer.style.display = 'none';
                 document.body.style.overflow = 'auto';
-                console.log('Photo viewer closed with background click');
             }
         });
     } else {
-        console.error('Required photo viewer elements not found');
     }
 });
 </script>

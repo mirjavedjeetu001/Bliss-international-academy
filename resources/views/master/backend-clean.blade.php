@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title', 'Admin Dashboard - Bliss International Academy')</title>
+    <title>@yield('title', 'Admin Dashboard - Katunia Rajbari College')</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/brand/favicon.ico') }}" />
@@ -475,7 +475,7 @@
             </button>
             <a href="{{ route('dashboard') }}" class="logo">
                 <img src="{{ asset('backend/assets/images/brand/logo.png') }}" alt="Logo">
-                <span class="logo-text">Bliss International Academy</span>
+                <span class="logo-text">Katunia Rajbari College</span>
             </a>
         </div>
         

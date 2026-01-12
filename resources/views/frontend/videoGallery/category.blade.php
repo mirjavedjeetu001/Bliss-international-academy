@@ -393,7 +393,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Video gallery script loaded');
     
     // Video play button functionality
     const videoPlayBtns = document.querySelectorAll('.video-play-btn');
@@ -402,8 +401,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoViewerTitle = document.getElementById('videoViewerTitle');
     const closeVideoViewer = document.getElementById('closeVideoViewer');
     
-    console.log('Found video play buttons:', videoPlayBtns.length);
-    console.log('Video viewer element:', videoViewer);
     
     if (videoViewer && videoViewerFrame && videoViewerTitle && closeVideoViewer) {
         videoPlayBtns.forEach((btn, index) => {
@@ -414,7 +411,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const videoUrl = this.getAttribute('data-video-url');
                 const videoTitle = this.getAttribute('data-video-title');
                 
-                console.log('Video button clicked:', index, videoUrl, videoTitle);
                 
                 if (videoUrl && videoTitle) {
                     videoViewerFrame.src = videoUrl;
@@ -422,7 +418,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     videoViewer.style.display = 'block';
                     document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 } else {
-                    console.error('Missing video data:', { videoUrl, videoTitle });
                 }
             });
         });
@@ -432,7 +427,6 @@ document.addEventListener('DOMContentLoaded', function() {
             videoViewer.style.display = 'none';
             videoViewerFrame.src = ''; // Stop video
             document.body.style.overflow = 'auto'; // Restore scrolling
-            console.log('Video viewer closed');
         });
 
         // Close on escape key
@@ -441,7 +435,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 videoViewer.style.display = 'none';
                 videoViewerFrame.src = ''; // Stop video
                 document.body.style.overflow = 'auto';
-                console.log('Video viewer closed with escape key');
             }
         });
 
@@ -451,11 +444,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 videoViewer.style.display = 'none';
                 videoViewerFrame.src = ''; // Stop video
                 document.body.style.overflow = 'auto';
-                console.log('Video viewer closed with background click');
             }
         });
     } else {
-        console.error('Required video viewer elements not found');
     }
 });
 </script>

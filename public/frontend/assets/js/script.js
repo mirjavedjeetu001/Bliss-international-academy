@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
     //         e.preventDefault();
             
     //         const targetId = this.getAttribute('href');
-    //         console.log(targetId);
     //         const targetSection = document.querySelector(targetId);
             
     //         if (targetSection) {
@@ -186,7 +185,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Event listeners for zoom animation
             on: {
                 init: function () {
-                    console.log('Swiper initialized successfully');
                 },
                 slideChange: function () {
                     // Reset and restart zoom animation on slide change
@@ -205,9 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        console.log('Swiper slider initialized');
     } else {
-        console.error('Swiper container not found');
     }
 
     // Modal functionality for Read More buttons
@@ -483,8 +479,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize video section
     initVideoSection();
-
-    console.log('Bliss International Academy website loaded successfully!');
 }); 
 
 // PDF functionality functions

@@ -1,6 +1,6 @@
 @extends('master.backend-clean')
 
-@section('title', 'Contact Messages - Bliss International Academy')
+@section('title', 'Contact Messages - Katunia Rajbari College')
 
 @section('content')
 <div class="container-fluid">

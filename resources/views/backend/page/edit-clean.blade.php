@@ -297,17 +297,10 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
         // Debug: Log form data
         const formData = new FormData(form);
-        console.log('Form submission debug:');
-        console.log('Title:', formData.get('title'));
-        console.log('Status:', formData.get('status'));
-        console.log('Images count:', formData.getAll('images[]').length);
-        console.log('PDFs count:', formData.getAll('pdfs[]').length);
         
         // Check if files are selected
         const imageInput = document.getElementById('images');
         const pdfInput = document.getElementById('pdfs');
-        console.log('Image files selected:', imageInput.files.length);
-        console.log('PDF files selected:', pdfInput.files.length);
         
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Updating...';
@@ -399,7 +392,6 @@ function removeImage(imagePath) {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
             alert('An error occurred while removing the image');
         });
     }
@@ -425,7 +417,6 @@ function removePdf(pdfPath) {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
             alert('An error occurred while removing the PDF');
         });
     }

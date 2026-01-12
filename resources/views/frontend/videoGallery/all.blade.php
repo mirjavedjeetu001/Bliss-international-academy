@@ -334,7 +334,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Video gallery script loaded');
     
     // Video play button functionality
     const videoPlayBtns = document.querySelectorAll('.video-play-btn');
@@ -342,8 +341,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoFrame = document.getElementById('videoFrame');
     const videoModalLabel = document.getElementById('videoModalLabel');
     
-    console.log('Found video play buttons:', videoPlayBtns.length);
-    console.log('Video modal element:', videoModalElement);
     
     if (videoModalElement && videoFrame && videoModalLabel) {
         const videoModal = new bootstrap.Modal(videoModalElement);
@@ -356,14 +353,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const videoUrl = this.getAttribute('data-video-url');
                 const videoTitle = this.getAttribute('data-video-title');
                 
-                console.log('Video button clicked:', index, videoUrl, videoTitle);
                 
                 if (videoUrl && videoTitle) {
                     videoFrame.src = videoUrl;
                     videoModalLabel.textContent = videoTitle;
                     videoModal.show();
                 } else {
-                    console.error('Missing video data:', { videoUrl, videoTitle });
                 }
             });
         });
@@ -371,10 +366,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear video when modal is hidden
         videoModalElement.addEventListener('hidden.bs.modal', function() {
             videoFrame.src = '';
-            console.log('Video modal closed');
         });
     } else {
-        console.error('Required modal elements not found');
     }
 });
 </script>

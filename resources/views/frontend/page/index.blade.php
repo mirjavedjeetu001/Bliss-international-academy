@@ -2,7 +2,7 @@
 
 
 
-@section('title', $page->title . ' - Bliss International Academy')
+@section('title', $page->title . ' - Katunia Rajbari College')
 
 
 

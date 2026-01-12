@@ -1,6 +1,6 @@
 @extends('master.frontend')
 
-@section('title', 'Contact Us - Bliss International Academy')
+@section('title', 'Contact Us - Katunia Rajbari College')
 
 @section('content')
 <div class="contact-page">

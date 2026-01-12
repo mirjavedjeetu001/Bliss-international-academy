@@ -15,7 +15,7 @@ class VideoGallerySeeder extends Seeder
     {
         $videos = [
             [
-                'title' => 'Welcome to Bliss International Academy',
+                'title' => 'Welcome to Katunia Rajbari College',
                 'url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
                 'type' => 'youtube',
                 'status' => 'active',

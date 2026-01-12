@@ -8,7 +8,7 @@ $settings = SiteSetting::first();
                 <div class="topbar-content">
                     <div class="brand-logo">
                         <a href="{{ route('frontend.home.index') }}">
-                            <img src="{{ $settings && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('frontend/assets/images/logo.png') }}" alt="Bliss International Academy Logo" class="brand-logo-image">
+                            <img src="{{ $settings && $settings->logo_path ? asset('storage/' . $settings->logo_path) : asset('frontend/assets/images/logo.png') }}" alt="Katunia Rajbari College Logo" class="brand-logo-image">
                         </a>
                     </div>
                     <div class="social-icons">
@@ -57,7 +57,7 @@ $settings = SiteSetting::first();
         @endphp
         <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container">
-                <a class="navbar-brand fw-bold d-lg-none d-block" href="#">Bliss International Academy</a>
+                <a class="navbar-brand fw-bold d-lg-none d-block" href="#">Katunia Rajbari College</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavMenu" aria-controls="mainNavMenu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

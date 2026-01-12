@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login - Bliss International Academy</title>
+    <title>Login - Katunia Rajbari College</title>
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/brand/favicon.ico') }}" />
@@ -329,7 +329,7 @@
 
         <!-- Footer -->
         <div class="login-footer">
-            <p>&copy; {{ date('Y') }} Bliss International Academy. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} Katunia Rajbari College. All rights reserved.</p>
         </div>
     </div>
 

@@ -35,7 +35,7 @@
                             </h5>
                         </div>
                         <div class="card-bottom">
-                            <button class="btn read-more-btn" data-bs-toggle="modal" data-bs-target="#detailModal" data-title="National Curriculum English Version" data-content="Bliss International Academy offers the National Curriculum (English Version), aligned with the standards of the National Curriculum and Textbook Board (NCTB) of Bangladesh. This program delivers high-quality education entirely in English, helping students master academic content while developing strong English proficiency.
+                            <button class="btn read-more-btn" data-bs-toggle="modal" data-bs-target="#detailModal" data-title="National Curriculum English Version" data-content="Katunia Rajbari College offers the National Curriculum (English Version), aligned with the standards of the National Curriculum and Textbook Board (NCTB) of Bangladesh. This program delivers high-quality education entirely in English, helping students master academic content while developing strong English proficiency.
 
 Our curriculum covers a wide range of core and elective subjects—such as Bangla, English, Math, Science, ICT, Social Science, and Religion—taught through modern, interactive methods. We emphasize critical thinking, creativity, communication, and problem-solving to nurture well-rounded, responsible, and lifelong learners.
 
@@ -43,7 +43,7 @@ Supported by experienced, well-trained educators, our program focuses on both ac
 
 We prepare students for national public exams (PSC, JSC, SSC, HSC) under the General Education Board, with instruction and assessments conducted in English. This equips students for higher education and global opportunities.
 
-Bliss International Academy provides a balanced, inclusive learning environment that blends national values with global relevance, empowering every student to reach their full potential.">Read More</button>
+Katunia Rajbari College provides a balanced, inclusive learning environment that blends national values with global relevance, empowering every student to reach their full potential.">Read More</button>
                         </div>
                     </div>
                 </div>
@@ -471,17 +471,12 @@ Bliss International Academy provides a balanced, inclusive learning environment 
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('Home page video script loaded');
-        
         // Video play button functionality
         const videoPlayBtns = document.querySelectorAll('.video-play-btn');
         const videoViewer = document.getElementById('videoViewer');
         const videoViewerFrame = document.getElementById('videoViewerFrame');
         const videoViewerTitle = document.getElementById('videoViewerTitle');
         const closeVideoViewer = document.getElementById('closeVideoViewer');
-        
-        console.log('Found video play buttons:', videoPlayBtns.length);
-        console.log('Video viewer element:', videoViewer);
         
         if (videoViewer && videoViewerFrame && videoViewerTitle && closeVideoViewer) {
             videoPlayBtns.forEach((btn, index) => {
@@ -492,7 +487,6 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                     const videoUrl = this.getAttribute('data-video-url');
                     const videoTitle = this.getAttribute('data-video-title');
                     
-                    console.log('Video button clicked:', index, videoUrl, videoTitle);
                     
                     if (videoUrl && videoTitle) {
                         videoViewerFrame.src = videoUrl;
@@ -500,7 +494,6 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                         videoViewer.style.display = 'block';
                         document.body.style.overflow = 'hidden'; // Prevent background scrolling
                     } else {
-                        console.error('Missing video data:', { videoUrl, videoTitle });
                     }
                 });
             });
@@ -510,7 +503,6 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                 videoViewer.style.display = 'none';
                 videoViewerFrame.src = ''; // Stop video
                 document.body.style.overflow = 'auto'; // Restore scrolling
-                console.log('Video viewer closed');
             });
 
             // Close on escape key
@@ -519,7 +511,6 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                     videoViewer.style.display = 'none';
                     videoViewerFrame.src = ''; // Stop video
                     document.body.style.overflow = 'auto';
-                    console.log('Video viewer closed with escape key');
                 }
             });
 
@@ -529,11 +520,9 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                     videoViewer.style.display = 'none';
                     videoViewerFrame.src = ''; // Stop video
                     document.body.style.overflow = 'auto';
-                    console.log('Video viewer closed with background click');
                 }
             });
         } else {
-            console.error('Required video viewer elements not found');
         }
 
         // Past Events Read More functionality
@@ -541,9 +530,6 @@ Bliss International Academy provides a balanced, inclusive learning environment 
         const detailModal = document.getElementById('detailModal');
         const detailModalLabel = document.getElementById('detailModalLabel');
         const modalContent = document.getElementById('modalContent');
-        
-        console.log('Found event read more buttons:', eventReadMoreBtns.length);
-        console.log('Detail modal element:', detailModal);
         
         if (detailModal && detailModalLabel && modalContent) {
             eventReadMoreBtns.forEach((btn, index) => {
@@ -553,7 +539,6 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                     const eventTitle = this.getAttribute('data-title');
                     const eventDetail = this.getAttribute('data-content');
                     
-                    console.log('Event read more clicked:', index, eventTitle);
                     
                     if (eventTitle && eventDetail) {
                         // Update modal content
@@ -571,12 +556,10 @@ Bliss International Academy provides a balanced, inclusive learning environment 
                         const modal = new bootstrap.Modal(detailModal);
                         modal.show();
                     } else {
-                        console.error('Missing event data:', { eventTitle, eventDetail });
                     }
                 });
             });
         } else {
-            console.error('Required modal elements not found');
         }
     });
     </script>
