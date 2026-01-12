@@ -44,7 +44,24 @@ class SliderController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('frontend/assets/images/sliders'), $imageName);
+            
+            // Save to public/frontend for Laravel (backward compatibility)
+            $uploadPath1 = public_path('frontend/assets/images/sliders');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
+            }
+            
+            // Save to base_path frontend for direct web access (live server)
+            $uploadPath2 = base_path('frontend/assets/images/sliders');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            // Save to both locations
+            $image->move($uploadPath1, $imageName);
+            copy($uploadPath1 . '/' . $imageName, $uploadPath2 . '/' . $imageName);
+            chmod($uploadPath2 . '/' . $imageName, 0644);
+            
             $data['image'] = $imageName;
         }
 
@@ -85,14 +102,38 @@ class SliderController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($slider->image && file_exists(public_path('frontend/assets/images/sliders/' . $slider->image))) {
-                unlink(public_path('frontend/assets/images/sliders/' . $slider->image));
+            // Delete old image from both locations
+            if ($slider->image) {
+                $oldPath1 = public_path('frontend/assets/images/sliders/' . $slider->image);
+                if (file_exists($oldPath1)) {
+                    unlink($oldPath1);
+                }
+                $oldPath2 = base_path('frontend/assets/images/sliders/' . $slider->image);
+                if (file_exists($oldPath2)) {
+                    unlink($oldPath2);
+                }
             }
 
             $image = $request->file('image');
             $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('frontend/assets/images/sliders'), $imageName);
+            
+            // Save to public/frontend for Laravel (backward compatibility)
+            $uploadPath1 = public_path('frontend/assets/images/sliders');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
+            }
+            
+            // Save to base_path frontend for direct web access (live server)
+            $uploadPath2 = base_path('frontend/assets/images/sliders');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            // Save to both locations
+            $image->move($uploadPath1, $imageName);
+            copy($uploadPath1 . '/' . $imageName, $uploadPath2 . '/' . $imageName);
+            chmod($uploadPath2 . '/' . $imageName, 0644);
+            
             $data['image'] = $imageName;
         } else {
             unset($data['image']);
@@ -108,9 +149,16 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        // Delete image file
-        if ($slider->image && file_exists(public_path('frontend/assets/images/sliders/' . $slider->image))) {
-            unlink(public_path('frontend/assets/images/sliders/' . $slider->image));
+        // Delete image file from both locations
+        if ($slider->image) {
+            $path1 = public_path('frontend/assets/images/sliders/' . $slider->image);
+            if (file_exists($path1)) {
+                unlink($path1);
+            }
+            $path2 = base_path('frontend/assets/images/sliders/' . $slider->image);
+            if (file_exists($path2)) {
+                unlink($path2);
+            }
         }
 
         $slider->delete();

@@ -58,14 +58,20 @@ class PageController extends Controller
             foreach ($request->file('images') as $image) {
                 $filename = time() . '_' . $image->getClientOriginalName();
                 $path = 'backend/assets/images/page/' . $filename;
-                $uploadPath = public_path('backend/assets/images/page');
                 
-                // Ensure directory exists
-                if (!file_exists($uploadPath)) {
-                    mkdir($uploadPath, 0755, true);
+                $uploadPath1 = public_path('backend/assets/images/page');
+                if (!file_exists($uploadPath1)) {
+                    mkdir($uploadPath1, 0755, true);
                 }
                 
-                $image->move($uploadPath, $filename);
+                $uploadPath2 = base_path('backend/assets/images/page');
+                if (!file_exists($uploadPath2)) {
+                    mkdir($uploadPath2, 0755, true);
+                }
+                
+                $image->move($uploadPath1, $filename);
+                copy($uploadPath1 . '/' . $filename, $uploadPath2 . '/' . $filename);
+                chmod($uploadPath2 . '/' . $filename, 0644);
                 $images[] = $path;
                 
                 \Log::info('Image uploaded:', [
@@ -84,14 +90,20 @@ class PageController extends Controller
             foreach ($request->file('pdfs') as $pdf) {
                 $filename = time() . '_' . $pdf->getClientOriginalName();
                 $path = 'backend/assets/images/page/' . $filename;
-                $uploadPath = public_path('backend/assets/images/page');
                 
-                // Ensure directory exists
-                if (!file_exists($uploadPath)) {
-                    mkdir($uploadPath, 0755, true);
+                $uploadPath1 = public_path('backend/assets/images/page');
+                if (!file_exists($uploadPath1)) {
+                    mkdir($uploadPath1, 0755, true);
                 }
                 
-                $pdf->move($uploadPath, $filename);
+                $uploadPath2 = base_path('backend/assets/images/page');
+                if (!file_exists($uploadPath2)) {
+                    mkdir($uploadPath2, 0755, true);
+                }
+                
+                $pdf->move($uploadPath1, $filename);
+                copy($uploadPath1 . '/' . $filename, $uploadPath2 . '/' . $filename);
+                chmod($uploadPath2 . '/' . $filename, 0644);
                 $pdfs[] = $path;
                 
                 \Log::info('PDF uploaded:', [
@@ -152,9 +164,35 @@ class PageController extends Controller
             foreach ($request->file('images') as $image) {
                 $filename = time() . '_' . $image->getClientOriginalName();
                 $path = 'backend/assets/images/page/' . $filename;
-                $image->move(public_path('backend/assets/images/page'), $filename);
+                
+                $uploadPath1 = public_path('backend/assets/images/page');
+                if (!file_exists($uploadPath1)) {
+                    mkdir($uploadPath1, 0755, true);
+                }
+                
+                $uploadPath2 = base_path('backend/assets/images/page');
+                if (!file_exists($uploadPath2)) {
+                    mkdir($uploadPath2, 0755, true);
+                }
+                
+                $image->move($uploadPath1, $filename);
+                copy($uploadPath1 . '/' . $filename, $uploadPath2 . '/' . $filename);
+                chmod($uploadPath2 . '/' . $filename, 0644);
                 $newImages[] = $path;
             }
+                $uploadPath1 = public_path('backend/assets/images/page');
+                if (!file_exists($uploadPath1)) {
+                    mkdir($uploadPath1, 0755, true);
+                }
+                
+                $uploadPath2 = base_path('backend/assets/images/page');
+                if (!file_exists($uploadPath2)) {
+                    mkdir($uploadPath2, 0755, true);
+                }
+                
+                $pdf->move($uploadPath1, $filename);
+                copy($uploadPath1 . '/' . $filename, $uploadPath2 . '/' . $filename);
+                chmod($uploadPath2 . '/' . $filename, 0644
             
             // Merge with existing images
             $existingImages = $page->images ?? [];

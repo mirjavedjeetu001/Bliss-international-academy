@@ -49,14 +49,24 @@ class TeacherController extends Controller
             $image = $request->file('picture');
             $filename = time() . '_' . $image->getClientOriginalName();
             $path = 'frontend/assets/images/teachers/' . $filename;
-            $uploadPath = public_path('frontend/assets/images/teachers');
             
-            // Ensure directory exists
-            if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0755, true);
+            // Save to public/frontend for Laravel (backward compatibility)
+            $uploadPath1 = public_path('frontend/assets/images/teachers');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
             }
             
-            $image->move($uploadPath, $filename);
+            // Save to base_path frontend for direct web access (live server)
+            $uploadPath2 = base_path('frontend/assets/images/teachers');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            // Save to both locations
+            $image->move($uploadPath1, $filename);
+            copy($uploadPath1 . '/' . $filename, $uploadPath2 . '/' . $filename);
+            chmod($uploadPath2 . '/' . $filename, 0644);
+            
             $data['picture'] = $path;
         }
 
@@ -105,23 +115,37 @@ class TeacherController extends Controller
         if ($request->hasFile('picture')) {
             // Delete old picture if exists
             if ($teacher->picture) {
-                $oldPath = public_path($teacher->picture);
-                if (file_exists($oldPath)) {
-                    unlink($oldPath);
+                $oldPath1 = public_path($teacher->picture);
+                if (file_exists($oldPath1)) {
+                    unlink($oldPath1);
+                }
+                $oldPath2 = base_path($teacher->picture);
+                if (file_exists($oldPath2)) {
+                    unlink($oldPath2);
                 }
             }
 
             $image = $request->file('picture');
             $filename = time() . '_' . $image->getClientOriginalName();
             $path = 'frontend/assets/images/teachers/' . $filename;
-            $uploadPath = public_path('frontend/assets/images/teachers');
             
-            // Ensure directory exists
-            if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0755, true);
+            // Save to public/frontend for Laravel (backward compatibility)
+            $uploadPath1 = public_path('frontend/assets/images/teachers');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
             }
             
-            $image->move($uploadPath, $filename);
+            // Save to base_path frontend for direct web access (live server)
+            $uploadPath2 = base_path('frontend/assets/images/teachers');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            // Save to both locations
+            $image->move($uploadPath1, $filename);
+            copy($uploadPath1 . '/' . $filename, $uploadPath2 . '/' . $filename);
+            chmod($uploadPath2 . '/' . $filename, 0644);
+            
             $data['picture'] = $path;
         }
 

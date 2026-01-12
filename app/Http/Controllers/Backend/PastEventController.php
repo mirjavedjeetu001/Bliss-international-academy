@@ -44,7 +44,21 @@ class PastEventController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/assets/images/events'), $imageName);
+            
+            $uploadPath1 = public_path('backend/assets/images/events');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
+            }
+            
+            $uploadPath2 = base_path('backend/assets/images/events');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            $image->move($uploadPath1, $imageName);
+            copy($uploadPath1 . '/' . $imageName, $uploadPath2 . '/' . $imageName);
+            chmod($uploadPath2 . '/' . $imageName, 0644);
+            
             $data['image'] = $imageName;
         }
 
@@ -85,14 +99,35 @@ class PastEventController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($pastevent->image && file_exists(public_path('backend/assets/images/events/' . $pastevent->image))) {
-                unlink(public_path('backend/assets/images/events/' . $pastevent->image));
+            // Delete old image from both locations
+            if ($pastevent->image) {
+                $oldPath1 = public_path('backend/assets/images/events/' . $pastevent->image);
+                if (file_exists($oldPath1)) {
+                    unlink($oldPath1);
+                }
+                $oldPath2 = base_path('backend/assets/images/events/' . $pastevent->image);
+                if (file_exists($oldPath2)) {
+                    unlink($oldPath2);
+                }
             }
 
             $image = $request->file('image');
             $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('backend/assets/images/events'), $imageName);
+            
+            $uploadPath1 = public_path('backend/assets/images/events');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
+            }
+            
+            $uploadPath2 = base_path('backend/assets/images/events');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            $image->move($uploadPath1, $imageName);
+            copy($uploadPath1 . '/' . $imageName, $uploadPath2 . '/' . $imageName);
+            chmod($uploadPath2 . '/' . $imageName, 0644);
+            
             $data['image'] = $imageName;
         } else {
             unset($data['image']);
@@ -108,9 +143,16 @@ class PastEventController extends Controller
      */
     public function destroy(PastEvent $pastevent)
     {
-        // Delete image file
-        if ($pastevent->image && file_exists(public_path('backend/assets/images/events/' . $pastevent->image))) {
-            unlink(public_path('backend/assets/images/events/' . $pastevent->image));
+        // Delete image file from both locations
+        if ($pastevent->image) {
+            $path1 = public_path('backend/assets/images/events/' . $pastevent->image);
+            if (file_exists($path1)) {
+                unlink($path1);
+            }
+            $path2 = base_path('backend/assets/images/events/' . $pastevent->image);
+            if (file_exists($path2)) {
+                unlink($path2);
+            }
         }
 
         $pastevent->delete();

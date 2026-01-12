@@ -44,7 +44,24 @@ class LatestUpdateController extends Controller
         if ($request->hasFile('attachment')) {
             $attachment = $request->file('attachment');
             $attachmentName = time() . '_' . Str::slug($request->title) . '.' . $attachment->getClientOriginalExtension();
-            $attachment->move(public_path('backend/attachments'), $attachmentName);
+            
+            // Save to public/backend for Laravel (backward compatibility)
+            $uploadPath1 = public_path('backend/attachments');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
+            }
+            
+            // Save to base_path backend for direct web access (live server)
+            $uploadPath2 = base_path('backend/attachments');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            // Save to both locations
+            $attachment->move($uploadPath1, $attachmentName);
+            copy($uploadPath1 . '/' . $attachmentName, $uploadPath2 . '/' . $attachmentName);
+            chmod($uploadPath2 . '/' . $attachmentName, 0644);
+            
             $data['attachment'] = $attachmentName;
         }
 
@@ -85,14 +102,38 @@ class LatestUpdateController extends Controller
 
         // Handle attachment upload
         if ($request->hasFile('attachment')) {
-            // Delete old attachment
-            if ($latestupdate->attachment && file_exists(public_path('backend/attachments/' . $latestupdate->attachment))) {
-                unlink(public_path('backend/attachments/' . $latestupdate->attachment));
+            // Delete old attachment from both locations
+            if ($latestupdate->attachment) {
+                $oldPath1 = public_path('backend/attachments/' . $latestupdate->attachment);
+                if (file_exists($oldPath1)) {
+                    unlink($oldPath1);
+                }
+                $oldPath2 = base_path('backend/attachments/' . $latestupdate->attachment);
+                if (file_exists($oldPath2)) {
+                    unlink($oldPath2);
+                }
             }
 
             $attachment = $request->file('attachment');
             $attachmentName = time() . '_' . Str::slug($request->title) . '.' . $attachment->getClientOriginalExtension();
-            $attachment->move(public_path('backend/attachments'), $attachmentName);
+            
+            // Save to public/backend for Laravel (backward compatibility)
+            $uploadPath1 = public_path('backend/attachments');
+            if (!file_exists($uploadPath1)) {
+                mkdir($uploadPath1, 0755, true);
+            }
+            
+            // Save to base_path backend for direct web access (live server)
+            $uploadPath2 = base_path('backend/attachments');
+            if (!file_exists($uploadPath2)) {
+                mkdir($uploadPath2, 0755, true);
+            }
+            
+            // Save to both locations
+            $attachment->move($uploadPath1, $attachmentName);
+            copy($uploadPath1 . '/' . $attachmentName, $uploadPath2 . '/' . $attachmentName);
+            chmod($uploadPath2 . '/' . $attachmentName, 0644);
+            
             $data['attachment'] = $attachmentName;
         } else {
             unset($data['attachment']);
@@ -108,9 +149,16 @@ class LatestUpdateController extends Controller
      */
     public function destroy(LatestUpdate $latestupdate)
     {
-        // Delete attachment file
-        if ($latestupdate->attachment && file_exists(public_path('backend/attachments/' . $latestupdate->attachment))) {
-            unlink(public_path('backend/attachments/' . $latestupdate->attachment));
+        // Delete attachment file from both locations
+        if ($latestupdate->attachment) {
+            $path1 = public_path('backend/attachments/' . $latestupdate->attachment);
+            if (file_exists($path1)) {
+                unlink($path1);
+            }
+            $path2 = base_path('backend/attachments/' . $latestupdate->attachment);
+            if (file_exists($path2)) {
+                unlink($path2);
+            }
         }
 
         $latestupdate->delete();
